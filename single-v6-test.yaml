@@ -13,7 +13,7 @@ parameters:
     default: aio-key
   image:
     type: string
-    description: Name of image to use for servers
+    description: Name/ID of image to use for servers
     default: 37206baf-2cdd-432c-8cac-e1fc27079123
   flavor:
     type: string
@@ -126,19 +126,7 @@ resources:
       user_data_format: RAW
       user_data: |
         #!/bin/bash
-        cat > index.html <<EOF
-        HTTP/1.1 200 OK Web1
-        EOF
-        sudo python -m SimpleHTTPServer 80
       security_groups: [{ get_resource: server_security_group }]
-  #server1_port:
-  #  type: OS::Neutron::Port
-  #  properties:
-  #    network_id: { get_resource: private_net }
-      #fixed_ips:
-      #  - subnet_id: { get_resource: private_subnet }
-      #  - subnet_id: { get_resource: private_v6_subnet }
-  #    security_groups: [{ get_resource: server_security_group }]
 
   server_security_group:
     type: OS::Neutron::SecurityGroup
@@ -169,8 +157,3 @@ resources:
         protocol: tcp,
         port_range_min: 80,
         port_range_max: 80}]
-
-#outputs:
-#  server1_private_ip:
-#    description: IP address of server1 in private network
-#    value: { get_attr: [ server1, first_address ] }
