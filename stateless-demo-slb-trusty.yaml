@@ -1,10 +1,9 @@
 heat_template_version: 2015-04-30
 
 description: >
-  HOT template to create a new neutron network plus a router to the public
-  network, and for deploying two servers into the new network. The template also
-  assigns floating IP addresses to each server so they are routable from the
-  public network.
+  HOT template to create new dual-stack (IPv4/IPv6) neutron networks plus a router that connects to the public (also dual stack) network. 
+  The template also creates servers that are dual stack-enabled and use SLAAC for address assignment.
+  
 
 parameters:
   key_name:
@@ -64,7 +63,6 @@ parameters:
     type: string
     description: Add DNS nameserver(s)
     default: [8.8.8.8]
-
   dns_nameservers_v6:
     type: string
     description: Add DNS nameserver(s)
