@@ -2,7 +2,7 @@ heat_template_version: 2015-04-30
 
 description: >
   HOT template to create new dual-stack (IPv4/IPv6) neutron networks plus a router that connects to the public (also dual stack) network. 
-  The template also creates servers that are dual stack-enabled and use SLAAC for address assignment.
+  The template also creates servers that are dual stack-enabled and use stateless DHCPv6 for address assignment.
   
 
 parameters:
